@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClinicMind | 臨床心理諮商 - 在疼痛裡找回安放身心的空間</title>
+    <style>
+        /* --- 基礎設定 & 色票 (Morandi Tone) --- */
+        :root {
+            --primary-color: #6B8E88; /* 鼠尾草綠：平靜、療癒 */
+            --secondary-color: #F2F0EB; /* 暖米白：溫柔、接納 */
+            --text-dark: #4A4A4A; /* 深灰：易讀、不刺眼 */
+            --text-light: #7A7A7A; /* 淺灰：輔助文字 */
+            --accent-color: #C19875; /* 暖陶色：強調、溫暖 */
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 導覽列 (Navigation) --- */
+        header {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-reserve {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+        }
+        
+        .btn-reserve:hover {
+            background-color: #55756F;
+        }
+
+        /* --- Hero Section (主視覺) --- */
+        .hero {
+            padding: 8rem 5% 6rem;
+            text-align: center;
+            background: linear-gradient(rgba(242, 240, 235, 0.9), rgba(242, 240, 235, 0.9)), url('https://images.unsplash.com/photo-1499209974431-9dddcece7f88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background-color: #A67F5D;
+        }
+
+        /* --- 引言區 (Introduction) --- */
+        .intro {
+            padding: 4rem 10%;
+            text-align: center;
+            background-color: var(--white);
+        }
+        
+        .intro blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--primary-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1rem;
+            display: inline-block;
+            text-align: left;
+        }
+
+        /* --- 關於我 (About) --- */
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5rem 10%;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 10px 10px 0px var(--primary-color);
+        }
+
+        .about-text {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .credentials {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        /* --- 服務項目 (Services) --- */
+        .services {
+            padding: 5rem 10%;
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .services h2 {
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* --- 最新文章 (Blog Feature) - 使用您提供的文章 --- */
+        .featured-article {
+            padding: 5rem 10%;
+            background-color: var(--white);
+        }
+
+        .article-preview {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .article-content {
+            padding: 2rem;
+            flex: 2;
+        }
+
+        .article-tag {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* --- 頁尾與免責聲明 (Footer) --- */
+        footer {
+            background-color: #333;
+            color: #ddd;
+            padding: 3rem 10%;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .crisis-warning {
+            background-color: #A63737;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+
+        /* RWD Mobile Adjustment */
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* 簡單隱藏選單，實際開發可用漢堡選單 */
+            .hero h1 { font-size: 2rem; }
+            .about { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ClinicMind</div>
+        <nav>
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#services">專業服務</a></li>
+                <li><a href="#blog">專欄文章</a></li>
+                <li><a href="#contact" class="btn-reserve">預約諮詢</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>在疼痛裡，找回安放身心的空間</h1>
+        <p>結合腦神經科學與溫柔接納，陪您走過那些「檢查不出來」的艱難時刻。</p>
+        <a href="#contact" class="cta-button">開始您的療癒旅程</a>
+    </section>
+
+    <section class="intro">
+        <blockquote>
+            「很多時候，最折磨人的不是痛楚本身，而是『找不到原因』的孤獨。<br>
+            在這裡，您的感受不需要檢驗報告來證明，也不需要為了『好起來』而拼命對抗。」
+        </blockquote>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="心理師照片">
+        </div>
+        <div class="about-text">
+            <h2>我是臨床心語，一位臨床心理師</h2>
+            <p>在診間裡，我遇過許多受傷的靈魂，他們往往拿著厚厚的病歷，眼神裡卻寫滿了疲憊與自我懷疑。這是我投入臨床心理工作的初衷——我想接住這些「隱形的痛楚」。</p>
+            <br>
+            <p>深受疼痛醫學的啟發，我相信疼痛不只是身體的警報，更是一種需要被看見的狀態。我的治療取向結合了最新的腦神經科學觀點與正念接納，我不會強迫您「戰勝」疼痛，而是陪伴您練習從緊繃的「生存模式」鬆綁。</p>
+            
+            <div class="credentials">
+                <strong>專業資格：</strong><br>
+                • 臨床心理學碩士<br>
+                • 澳門衛生局註冊心理治療師<br>
+                • 澳門註冊心理治療師公會創會會員
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>專業服務領域</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>慢性疼痛心理諮商</h3>
+                <p>針對纖維肌痛症、長期不明疼痛。協助您理解神經系統運作，重新建立大腦與身體的安全連結，減少對疼痛的災難化思考。</p>
+            </div>
+            <div class="service-card">
+                <h3>創傷與壓力療癒</h3>
+                <p>處理醫療創傷、長期累積的壓力反應。透過安全的諮商關係，讓長期處於「戰或逃」狀態的神經系統獲得釋放與調節。</p>
+            </div>
+            <div class="service-card">
+                <h3>情緒共處與調節</h3>
+                <p>在憂鬱、焦慮或失落的浪潮中，我們不急著消除浪花，而是學習如何衝浪。建立內在的穩定錨點，找回生活的掌控感。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="featured-article">
+        <div class="article-preview">
+            <div class="article-content">
+                <span class="article-tag">精選專欄</span>
+                <h3>當痛楚成為一種存在，而非僅是症狀｜重新溫柔地看見慢性疼痛</h3>
+                <p>很多時候，我們在診間裡最害怕聽到的並不是「這需要開刀」，而是經過了一連串精密的檢查後，醫生語氣平淡地說：「一切看起來都很正常...」<br><br>
+                那是一種巨大的失落與孤獨。彷彿你的疼痛是隱形的。但在疼痛醫學的漫長演進中，這份孤獨終於被科學溫柔地接住了...</p>
+                <br>
+                <a href="#" style="color: var(--primary-color); font-weight: bold;">閱讀全文 →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <h3>ClinicMind</h3>
+                <p>在接納中，讓療癒悄然展開。</p>
+            </div>
+            <div>
+                <h4>聯絡資訊</h4>
+                <p>Email: contact@clinicmind.com</p>
+                <p>Instagram: @clinicmind</p>
+                <p>Threads: @clinicmind</p>
+            </div>
+            <div>
+                <h4>診所地點</h4>
+                <p>只供預約</p>
+                <p>測試中</p>
+            </div>
+        </div>
+
+        <div class="crisis-warning">
+            ⚠️ 免責聲明：本網站服務非緊急救援用途。<br>
+            若您或身邊的人正處於緊急危難或有自傷風險，請立即撥打緊急救助電話 (如 999/119) 或前往最近的急診室。
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; border-top: 1px solid #555; padding-top: 1rem;">
+            &copy; 2025 ClinicMind. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
